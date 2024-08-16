@@ -1,0 +1,24 @@
+{
+  "name": "softtek-reto",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.7.4",
+    "express": "^4.19.2",
+    "serverless-http": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.143",
+    "@types/axios": "^0.14.0",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.3.0",
+    "serverless-openapi-documentation": "^0.4.0",
+    "serverless-plugin-typescript": "^2.1.5",
+    "serverless-webpack": "^5.14.1",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4",
+    "webpack": "^5.93.0",
+    "webpack-cli": "^5.1.4"
+  }
+}

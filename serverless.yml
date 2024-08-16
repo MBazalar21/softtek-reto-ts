@@ -1,0 +1,94 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: martinbazalar
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: softtek-reto
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: softtek-reto
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+
+plugins:
+  - serverless-openapi-documentation
+
+custom:
+  documentation:
+    api:
+      info:
+        version: '1'
+        title: 'SWAPI Integration API'
+        description: 'API para integrar con SWAPI'
+    models: []
+    endpoints:
+      - path: /character/{id}
+        method: get
+        description: "Obtener un personaje por ID"
+        request:
+          parameters:
+            paths:
+              id: true
+        responses:
+          200:
+            description: "Personaje encontrado"
+          404:
+            description: "Personaje no encontrado"
+      - path: /planet/{id}
+        method: get
+        description: "Obtener un planeta por ID"
+        request:
+          parameters:
+            paths:
+              id: true
+        responses:
+          200:
+            description: "Planeta encontrado"
+          404:
+            description: "Planeta no encontrado"
+
+functions:
+  getCharacter:
+    handler: handler.getCharacterApi
+    events:
+      - http:
+          path: character/{id}
+          method: get
+          request:
+            parameters:
+              paths:
+                id: true
+  getCharacterInDb:
+    handler: handler.getCharacterApiDb
+    events:
+      - http:
+          path: character/database/{id}
+          method: get
+          request:
+            parameters:
+              paths:
+                id: true
+  createCharacter:
+    handler: handler.createCharacterApi
+    timeout: 60
+    memorySize: 1024
+    events:
+      - http:
+          path: character
+          method: post
+  getPlanet:
+    handler: handler.getPlanetApi
+    events:
+      - http:
+          path: planet/{id}
+          method: get
+          request:
+            parameters:
+              paths:
+                id: true     
+  api:
+    handler: handler.handler
+    events:
+      - httpApi: "*"
+
+package:
+  individually: true

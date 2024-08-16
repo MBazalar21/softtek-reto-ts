@@ -1,0 +1,10 @@
+{
+    "name": "nombre",
+    "height": "altura",
+    "mass": "masa",
+    "hair_color": "color_cabello",
+    "skin_color": "color_piel",
+    "eye_color": "color_ojos",
+    "birth_year": "año_nacimiento",
+    "gender": "género"
+}

@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "target": "ES2020",
+      "module": "commonjs",
+      "strict": true,
+      "esModuleInterop": true,
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "types": ["node", "@types/aws-lambda"],
+      "allowJs": false 
+    },
+    "include": ["src/**/*.ts", "src/planets/controller/planetController.ts", "src/characters/services/characterService.ts", "swagger.ts"],
+    "exclude": ["node_modules"]
+}
