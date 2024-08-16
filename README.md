@@ -40,9 +40,19 @@ Deploying "aws-node-express-api" to stage "dev" (us-east-1)
 
 ✔ Service deployed to stack aws-node-express-api-dev (96s)
 
-endpoint: ANY - https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com
-functions:
-  api: aws-node-express-api-dev-api (2.3 kB)
+Functions:
+  getCharacter: softtek-reto-dev-getCharacter
+  getCharacterInDb: softtek-reto-dev-getCharacterInDb
+  createCharacter: softtek-reto-dev-createCharacter
+  getPlanet: softtek-reto-dev-getPlanet
+  api: softtek-reto-dev-api
+
+Endpoints:
+  GET - https://unyr84j0mi.execute-api.us-east-1.amazonaws.com/dev/character/{id}
+  GET - https://unyr84j0mi.execute-api.us-east-1.amazonaws.com/dev/character/database/{id}
+  POST - https://unyr84j0mi.execute-api.us-east-1.amazonaws.com/dev/character
+  GET - https://unyr84j0mi.execute-api.us-east-1.amazonaws.com/dev/planet/{id}
+  ANY - https://toqyv19q1i.execute-api.us-east-1.amazonaws.com
 ```
 
 _Note_: In current form, after deployment, your API is public and can be invoked by anyone. For production deployments, you might want to configure an authorizer. For details on how to do that, refer to [`httpApi` event docs](https://www.serverless.com/framework/docs/providers/aws/events/http-api/).

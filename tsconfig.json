@@ -6,7 +6,7 @@
       "esModuleInterop": true,
       "outDir": "./dist",
       "rootDir": "./src",
-      "types": ["node", "@types/aws-lambda"],
+      "types": ["node", "@types/aws-lambda","jest"],
       "allowJs": false 
     },
     "include": ["src/**/*.ts", "src/planets/controller/planetController.ts", "src/characters/services/characterService.ts", "swagger.ts"],

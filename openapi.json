@@ -1,0 +1,151 @@
+{
+  "openapi": "3.0.0",
+  "components": {
+    "schemas": {
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Mensaje de error"
+          },
+          "code": {
+            "type": "integer",
+            "description": "Código de error"
+          }
+        }
+      },
+      "PeopleListResponse": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string",
+            "description": "Nombre del personaje"
+          },
+          "altura": {
+            "type": "string",
+            "description": "Altura del personaje"
+          },
+          "masa": {
+            "type": "string",
+            "description": "Peso del personaje"
+          },
+          "color_cabello": {
+            "type": "string",
+            "description": "Color de cabello del personaje"
+          },
+          "color_piel": {
+            "type": "string",
+            "description": "Color de piel del personaje"
+          },
+          "color_ojos": {
+            "type": "string",
+            "description": "Color de ojos del personaje"
+          },
+          "año_nacimiento": {
+            "type": "string",
+            "description": "Año de nacimiento del personaje"
+          },
+          "género": {
+            "type": "string",
+            "description": "Género del personaje"
+          }
+        }
+      },
+      "id": {
+        "type": "string"
+      },
+      "Access-Control-Allow-Origin": {
+        "type": "string",
+        "default": "*",
+        "example": "*"
+      }
+    }
+  },
+  "info": {
+    "title": "SWAPI Integration API",
+    "description": "API para integrar con SWAPI",
+    "version": "1",
+    "contact": {
+      "name": "Hector",
+      "email": "hectormartin1994@gmail.com"
+    }
+  },
+  "paths": {
+    "/character/{id}": {
+      "get": {
+        "summary": "Obtener un personaje por ID",
+        "description": "Retorna la información de un personaje dado su ID.",
+        "operationId": "getCharacter",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID del personaje",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/id"
+            }
+          }
+        ],
+        "tags": [
+          "Character"
+        ],
+        "responses": {
+          "201": {
+            "description": "Lista de personajes obtenida exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PeopleListResponse"
+                }
+              }
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "description": "The Access-Control-Allow-Origin response header indicates whether the response can be shared with requesting code from the given [origin](https://developer.mozilla.org/en-US/docs/Glossary/Origin). - [MDN Link](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin)",
+                "schema": {
+                  "$ref": "#/components/schemas/Access-Control-Allow-Origin"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Personaje no encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "description": "The Access-Control-Allow-Origin response header indicates whether the response can be shared with requesting code from the given [origin](https://developer.mozilla.org/en-US/docs/Glossary/Origin). - [MDN Link](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin)",
+                "schema": {
+                  "$ref": "#/components/schemas/Access-Control-Allow-Origin"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://unyr84j0mi.execute-api.us-east-1.amazonaws.com/dev/",
+      "description": "The server dev"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Character",
+      "description": "API para obtener información de personajes"
+    },
+    {
+      "name": "Planet",
+      "description": "API para obtener información de planetas"
+    }
+  ]
+}

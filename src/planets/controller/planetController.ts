@@ -6,6 +6,12 @@ import objectMapper from 'object-mapper';
 import planet from '../../shared/translate/en/planet.json';
 
 const mapRules = planet;
+/**
+ * @swagger
+ * tags:
+ *   name: Planet
+ *   description: API para obtener información de planetas
+ */
 
 /**
  * @swagger

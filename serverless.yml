@@ -10,41 +10,67 @@ provider:
   runtime: nodejs20.x
 
 plugins:
-  - serverless-openapi-documentation
+  - serverless-openapi-documenter
 
 custom:
   documentation:
-    api:
-      info:
-        version: '1'
-        title: 'SWAPI Integration API'
-        description: 'API para integrar con SWAPI'
-    models: []
-    endpoints:
-      - path: /character/{id}
-        method: get
-        description: "Obtener un personaje por ID"
-        request:
-          parameters:
-            paths:
-              id: true
-        responses:
-          200:
-            description: "Personaje encontrado"
-          404:
-            description: "Personaje no encontrado"
-      - path: /planet/{id}
-        method: get
-        description: "Obtener un planeta por ID"
-        request:
-          parameters:
-            paths:
-              id: true
-        responses:
-          200:
-            description: "Planeta encontrado"
-          404:
-            description: "Planeta no encontrado"
+    version: '1'
+    title: 'SWAPI Integration API'
+    description: 'API para integrar con SWAPI'
+    servers:
+      url: https://unyr84j0mi.execute-api.us-east-1.amazonaws.com/dev/
+      description: The server dev
+    tags: 
+      - name: Character
+        description: API para obtener información de personajes
+      - name: Planet
+        description: API para obtener información de planetas
+    contact:
+      name: Hector
+      email: hectormartin1994@gmail.com
+    models:
+      - name: ErrorResponse
+        description: 'Modelo de respuesta para errores'
+        contentType: 'application/json'
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Mensaje de error'
+            code:
+              type: integer
+              description: 'Código de error'
+      - name: PeopleListResponse
+        description: 'Respuesta con la lista de personajes'
+        contentType: 'application/json'
+        schema:
+          type: object
+          properties:
+            nombre:
+              type: string
+              description: 'Nombre del personaje'
+            altura:
+              type: string
+              description: 'Altura del personaje'
+            masa:
+              type: string
+              description: 'Peso del personaje'
+            color_cabello:
+              type: string
+              description: 'Color de cabello del personaje'
+            color_piel:
+              type: string
+              description: 'Color de piel del personaje'
+            color_ojos:
+              type: string
+              description: 'Color de ojos del personaje'
+            año_nacimiento:
+              type: string
+              description: 'Año de nacimiento del personaje'
+            género:
+              type: string
+              description: 'Género del personaje'
 
 functions:
   getCharacter:
@@ -53,10 +79,42 @@ functions:
       - http:
           path: character/{id}
           method: get
+          cors: 
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
+            maxAge: 86400
           request:
             parameters:
               paths:
                 id: true
+          documentation:
+            summary: Obtener un personaje por ID
+            description: Retorna la información de un personaje dado su ID.
+            tags:
+              - Character
+            pathParams:
+              - name: id
+                description: "ID del personaje"
+                schema:
+                  type: string
+            methodResponses:
+              - statusCode: 201
+                responseBody:
+                  description: "Lista de personajes obtenida exitosamente"
+                responseModels:
+                  application/json: 'PeopleListResponse'
+              - statusCode: 404
+                responseBody:
+                  description: "Personaje no encontrado"
+                responseModels:
+                  application/json: 'ErrorResponse'
   getCharacterInDb:
     handler: handler.getCharacterApiDb
     events:

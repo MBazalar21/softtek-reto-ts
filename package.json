@@ -2,6 +2,9 @@
   "name": "softtek-reto",
   "version": "1.0.0",
   "description": "",
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
     "axios": "^1.7.4",
     "dotenv": "^16.4.5",
@@ -16,11 +19,16 @@
     "@types/aws-lambda": "^8.10.143",
     "@types/axios": "^0.14.0",
     "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
     "@types/node": "^22.3.0",
+    "@types/supertest": "^6.0.2",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.6",
-    "serverless-openapi-documentation": "^0.4.0",
+    "jest": "^29.7.0",
+    "serverless-openapi-documenter": "^0.0.104",
     "serverless-webpack": "^5.14.1",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.4",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4",
