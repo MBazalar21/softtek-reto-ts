@@ -36,6 +36,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   });
 });
 
+export { app };
 export const getCharacterApi= getCharacter;
 export const createCharacterApi= createCharacter;
 export const getCharacterApiDb= getPersonById;
